@@ -1,0 +1,5 @@
+# Initial go at configuring QT
+./configure -verbose -prefix /usr/local/Cellar/qt5/5.8.0 -release -opensource -confirm-license -system-zlib -qt-libpng -qt-libjpeg -qt-freetype -qt-pcre -nomake tests -no-rpath -pkg-config -dbus-runtime -c++std c++14 -qpa xcb -openssl -fontconfig
+
+# Final, working version (includes ICU, ODBC, and EGL on X11 support)
+./configure -verbose -prefix /usr/local/Cellar/qt5/5.8.0_1 -release -opensource -confirm-license -system-zlib -qt-libpng -qt-libjpeg -qt-freetype -qt-pcre -nomake tests -no-rpath -pkg-config -dbus-runtime -c++std c++14 -qt-xcb -qpa xcb -I /usr/local/include -L /usr/local/lib -I /opt/local/include -L /opt/local/lib -I /opt/X11/include -L /opt/X11/lib
