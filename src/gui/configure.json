@@ -263,12 +263,20 @@
                 "-lxcb-glx -lxcb"
             ]
         },
+        "xlib": {
+            "label": "xlib",
+            "test": "x11/xlib",
+            "sources": [
+                { "type": "pkgConfig", "args": "x11" },
+                "-lX11"
+            ]
+        },
         "xinput2": {
             "label": "Xinput2",
             "test": "x11/xinput2",
             "sources": [
-                { "type": "pkgConfig", "args": "xi" },
-                "-lXi"
+                { "type": "pkgConfig", "args": "xi x11" },
+                "-lXi -lX11"
             ]
         },
         "xkbcommon": {
@@ -403,7 +411,8 @@
         "xlib": {
             "label": "XLib",
             "type": "compile",
-            "test": "x11/xlib"
+            "test": "x11/xlib",
+            "use": "xlib"
         }
      },
 
@@ -471,7 +480,7 @@
         },
         "fontconfig": {
             "label": "Fontconfig",
-            "condition": "!config.win32 && !config.darwin && features.system-freetype && libs.fontconfig",
+            "condition": "!config.win32 && features.system-freetype && libs.fontconfig",
             "output": [ "privateFeature", "feature" ]
         },
         "gbm": {
@@ -697,7 +706,6 @@
         },
         "xcb": {
             "label": "XCB",
-            "autoDetect": "!config.darwin",
             "condition": "libs.xcb",
             "output": [ "privateFeature" ]
         },
@@ -705,7 +713,6 @@
             "label": "Using system provided XCB libraries",
             "enable": "input.xcb == 'system' || input.xcb == 'yes'",
             "disable": "input.xcb == 'qt' || input.xcb == 'no'",
-            "autoDetect": "!config.darwin",
             "condition": "libs.xcb && libs.xcb_syslibs",
             "output": [ "privateFeature" ]
         },

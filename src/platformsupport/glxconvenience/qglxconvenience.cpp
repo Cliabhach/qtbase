@@ -206,6 +206,10 @@ GLXFBConfig qglx_findConfig(Display *display, int screen , QSurfaceFormat format
             GLXFBConfig candidate = configs[i];
 
             QXlibPointer<XVisualInfo> visual(glXGetVisualFromFBConfig(display, candidate));
+            if (!visual) {
+                qWarning("GLX wasn't able to find XVisualInfo matching your requested GLXFBConfig");
+                continue;
+            }
 
             const int actualRed = qPopulationCount(visual->red_mask);
             const int actualGreen = qPopulationCount(visual->green_mask);

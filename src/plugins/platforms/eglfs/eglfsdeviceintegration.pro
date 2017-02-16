@@ -14,6 +14,7 @@ QT += \
     service_support-private theme_support-private fontdatabase_support-private \
     fb_support-private egl_support-private platformcompositor_support-private
 
+
 qtHaveModule(input_support-private): \
     QT += input_support-private
 
